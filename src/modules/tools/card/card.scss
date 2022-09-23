@@ -19,6 +19,12 @@
   color: white;
 }
 
+.card__content{
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
 .card__text{
   font-size: 1.2em;
   font-weight: 500;
