@@ -1,0 +1,61 @@
+.batteryBox{
+  height: 100px;
+  width: 250px;
+  border: 5px solid white;
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.batteryBox::after{
+  content: '';
+  height: 25px;
+  width: 10px;
+  background: white;
+  position: absolute;
+  right: -15px;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.charge{
+  height: 100%;
+  background: linear-gradient(180deg, green, yellowgreen);
+  // background: linear-gradient(90deg, red, yellow 20%, green 50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+
+  font-size: 1.2em;
+  font-weight: 800;
+  font-family: sans-serif;
+  color: white;
+}
+
+.card__header{
+  font-size: 1.2em;
+  font-weight: 800;
+  font-family: sans-serif;
+  color: white;
+}
+
+.charge::before{
+  content: '';
+  height: 100%;
+  width: 100%;
+  background: rgba(2, 68, 16, 0.2);
+  position: absolute;
+  animation: animate 4s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

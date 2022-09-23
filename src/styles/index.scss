@@ -1,0 +1,31 @@
+@import "./variables.scss";
+@import "../modules/battery.scss";
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-color: $color-background-dark;
+}
+
+.card{
+  width: fit-content;
+  height: fit-content;
+  border: 5px solid $color-primary-dark;
+  border-radius: 20px;
+  padding: 2em;
+  padding-top: 1em;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.header{
+  color: $color-secondary-dark;
+}
