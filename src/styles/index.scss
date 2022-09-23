@@ -1,5 +1,6 @@
 @import "./variables.scss";
-@import "../modules/battery.scss";
+@import "../modules/tools/card/card.scss";
+@import "../modules/battery/battery.scss";
 
 *{
   margin: 0;
@@ -9,23 +10,4 @@
 
 body{
   background-color: $color-background-dark;
-}
-
-.card{
-  width: fit-content;
-  height: fit-content;
-  border: 5px solid $color-primary-dark;
-  border-radius: 20px;
-  padding: 2em;
-  padding-top: 1em;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1em;
-}
-
-.header{
-  color: $color-secondary-dark;
 }

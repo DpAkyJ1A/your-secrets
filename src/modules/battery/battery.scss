@@ -22,24 +22,11 @@
 .charge{
   height: 100%;
   background: linear-gradient(180deg, green, yellowgreen);
-  // background: linear-gradient(90deg, red, yellow 20%, green 50%);
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   overflow: hidden;
-
-  font-size: 1.2em;
-  font-weight: 800;
-  font-family: sans-serif;
-  color: white;
-}
-
-.card__header{
-  font-size: 1.2em;
-  font-weight: 800;
-  font-family: sans-serif;
-  color: white;
 }
 
 .charge::before{
@@ -58,4 +45,11 @@
   100% {
     transform: translateX(100%);
   }
+}
+
+.chargePercent{
+  font-size: 1.2em;
+  font-weight: 800;
+  font-family: sans-serif;
+  color: white;
 }

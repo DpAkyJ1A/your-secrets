@@ -1,22 +1,17 @@
 import Control from "control";
+import Card from "card";
 
-export default class Battery {
-  card;
+export default class Battery extends Card{
   constructor(container) {
-    this.card = new Control(container, 'div', 'card');
-
-    const cardHeader = new Control(this.card.node, 'h2', 'card__header', 'Battery')
+    super(container, "Battery");
 
     const batteryBox = new Control(this.card.node, 'div', 'batteryBox');
     const charge = new Control(batteryBox.node, 'div', 'charge');
 
+    const chargePercent = new Control(this.card.node, "h3", "card__text");
+
     navigator.getBattery().then((battery) => {
-      function updateAllBatteryInfo() {
-        updateLevelInfo();
-        updateChargeInfo();
-      }
-      updateAllBatteryInfo();
-      
+      updateLevelInfo();
       // Battery percentage
       battery.addEventListener("levelchange", () => {
         updateLevelInfo();
@@ -24,7 +19,8 @@ export default class Battery {
       function updateLevelInfo() {
         let chargePercentage = Math.round(battery.level * 100) + "%";
         charge.node.style.width = chargePercentage;
-        charge.node.innerText = chargePercentage;
+        chargePercent.node.innerText = chargePercentage;
+        updateChargeInfo();
       }
 
       // Is the battery charging now
@@ -33,10 +29,12 @@ export default class Battery {
       });
       function updateChargeInfo() {
         if (battery.charging) {
-          charge.node.innerText = "🗲" + charge.node.innerText;
-          charge.node.before
+          chargePercent.node.innerText = "🗲" + chargePercent.node.innerText;
         } else {
-          charge.node.innerText = charge.node.innerText.replace("🗲", "");
+          chargePercent.node.innerText = chargePercent.node.innerText.replace(
+            "🗲",
+            ""
+          );
         }
       }
     });

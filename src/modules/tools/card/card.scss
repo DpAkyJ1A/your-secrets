@@ -1,0 +1,27 @@
+.card{
+  width: fit-content;
+  height: fit-content;
+  border: 5px solid $color-primary-dark;
+  border-radius: 20px;
+  padding: 1em 2em;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.card__header{
+  font-size: 1.5em;
+  font-weight: 800;
+  font-family: sans-serif;
+  color: white;
+}
+
+.card__text{
+  font-size: 1.2em;
+  font-weight: 500;
+  font-family: sans-serif;
+  color: white;
+}
