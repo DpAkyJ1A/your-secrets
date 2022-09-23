@@ -1,6 +1,10 @@
 import "./styles/index.scss";
-import Battery from "./modules/battery/battery";
+import Layout from "./layout/layout";
+// import Battery from "./modules/battery/battery";
+// import Device from "./modules/device/device";
 
 const root = document.querySelector('#root');
 
-new Battery(root);
+new Layout(root);
+// new Battery(root);
+// new Device(root);
