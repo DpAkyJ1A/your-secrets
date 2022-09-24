@@ -29,7 +29,7 @@ export default class Battery extends Card{
       });
       function updateChargeInfo() {
         if (battery.charging) {
-          chargePercent.node.innerText = "🗲" + chargePercent.node.innerText;
+          chargePercent.node.innerHTML = `<ion-icon name="flash"></ion-icon> ${chargePercent.node.innerText}`;
         } else {
           chargePercent.node.innerText = chargePercent.node.innerText.replace(
             "🗲",

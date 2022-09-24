@@ -46,3 +46,7 @@
     transform: translateX(100%);
   }
 }
+
+.batteryBox+.card__text ion-icon{
+  fill: yellow;
+}
