@@ -1,0 +1,27 @@
+.header__theme-switcher{
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+}
+
+.header__theme-switcher.dark-theme{
+  color: $color-text-dark;
+}
+
+.header__theme-switcher.light-theme{
+  color: $color-text-light;
+}
+
+.header__theme-switcher ion-icon{
+  width: 100%;
+  height: 100%;
+}
+
+.header__theme-switcher:hover{
+  cursor: pointer;
+}
+
+.header__theme-switcher:hover ion-icon{
+  color: gray;
+}

@@ -1,7 +1,7 @@
 .card{
   width: fit-content;
   height: fit-content;
-  border: 5px solid $color-primary-dark;
+  border: 5px solid $color-primary;
   border-radius: 20px;
   padding: 1em 2em;
 
@@ -10,12 +10,21 @@
   justify-content: center;
   align-items: center;
   gap: 1em;
+
+  transition: all 0.5s ease;
+}
+
+.card.dark-theme{
+  color: $color-text-dark;
+}
+
+.card.light-theme{
+  color: $color-text-light;
 }
 
 .card__header{
   font-size: 1.5em;
   font-weight: 800;
-  color: white;
 }
 
 .card__content{
@@ -27,7 +36,6 @@
 .card__text{
   font-size: 1.2em;
   font-weight: 500;
-  color: white;
   display: flex;
   align-items: center;
 }
