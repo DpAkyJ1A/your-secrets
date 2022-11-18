@@ -21,9 +21,9 @@ export default class Specification extends Card {
         "card__text",
         `Quota: ${quotaInGigabytes}GB`
       );
-      quota.node.setAttribute("data-tooltip", "Nigger");
+      // quota.node.setAttribute("data-tooltip", "Tip");
       // <ion-icon name="information-circle-outline"></ion-icon>
-      
+
       new Control(
         content.node,
         "h3",
