@@ -1,0 +1,16 @@
+.header{
+  background-color: $color-background-lighten-dark;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-left: 20px;
+}
+
+.header__title{
+  color: white;
+  text-shadow: 10px 10px 30px yellow, -10px -10px 30px blue;
+  -webkit-text-stroke: 2px white;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 2px;
+}
