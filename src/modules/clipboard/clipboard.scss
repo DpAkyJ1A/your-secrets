@@ -1,0 +1,38 @@
+.clipboard-text{
+  height: 100px;
+  width: 250px;
+  resize: none;
+  font-size: 1.2em;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.controls{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn{
+  width: 80px;
+  height: 30px;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+}
+
+.btn.dark-theme{
+  background-color: $color-background-light;
+  color: $color-text-light;
+}
+
+.btn.light-theme{
+  background-color: $color-background-dark;
+  color: $color-text-dark;
+}
+
+.btn:hover{
+  background-color: gray;
+}

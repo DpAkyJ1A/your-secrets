@@ -40,6 +40,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "device-detector-js": "^3.0.3"
+    "device-detector-js": "^3.0.3",
+    "systeminformation": "^5.13.5"
   }
 }
