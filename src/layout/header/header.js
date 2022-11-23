@@ -4,12 +4,12 @@ import ThemeSwitcher from "./themeSwitcher/themeSwitcher";
 export default class Header {
   header;
   constructor(container) {
-    this.header = new Control(container, "header", "header dark-theme");
+    this.header = new Control(container, "header", "header");
     
     new Control(
       this.header.node,
       "h1",
-      "header__title dark-theme",
+      "header__title",
       "Your Secrets"
     );
 

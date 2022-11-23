@@ -18,6 +18,14 @@
   height: 100%;
 }
 
+.header__theme-switcher.dark-theme ion-icon[name="sunny-outline"]{
+  display: none;
+}
+
+.header__theme-switcher.light-theme ion-icon[name="moon-outline"]{
+  display: none;
+}
+
 .header__theme-switcher:hover{
   cursor: pointer;
 }

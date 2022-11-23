@@ -13,7 +13,7 @@ export default class Clipboard extends Card {
     const clipboardReadBtn = new Control(
       controls.node,
       "button",
-      "btn dark-theme",
+      "btn",
       "Read"
     );
     clipboardReadBtn.node.onclick = () => {
@@ -25,7 +25,7 @@ export default class Clipboard extends Card {
     const openTextareaOnFullScreen = new Control(
       controls.node,
       "button",
-      "btn dark-theme",
+      "btn",
       "Open"
     );
   }
