@@ -1,4 +1,5 @@
 .card{
+  position: relative;
   width: fit-content;
   height: fit-content;
   border: 5px solid $color-primary;
@@ -25,6 +26,20 @@
 .card__header{
   font-size: 1.5em;
   font-weight: 800;
+}
+
+.card__info{
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: color 0.3s ease;
+}
+
+.card__info:hover{
+  color: gray;
+  cursor: pointer;
 }
 
 .card__content{
