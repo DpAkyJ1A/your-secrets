@@ -5,10 +5,10 @@ export default class Clipboard extends Card {
   constructor(container) {
     super(container, "Clipboard");
 
-    this.errorCatcher(this.createCard);
+    this.errorCatcher(this.fillCardData);
   }
 
-  createCard = () => {
+  fillCardData = () => {
     const clipboardText = new Control(
       this.card.node,
       "textarea",

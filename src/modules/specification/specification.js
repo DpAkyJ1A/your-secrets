@@ -5,10 +5,10 @@ export default class Specification extends Card {
   constructor(container) {
     super(container, "Specification");
 
-    this.errorCatcher(this.createCard);
+    this.errorCatcher(this.fillCardData);
   }
 
-  createCard = () => {
+  fillCardData = () => {
     const content = new Control(this.card.node, "div", "card__content");
     const storageManager = navigator.storage;
     storageManager.estimate().then((data) => {
@@ -41,5 +41,5 @@ export default class Specification extends Card {
         `Using percentage: ${(usageInGigabytes / quotaInGigabytes).toFixed(2)}%`
       );
     });
-  }
+  };
 }

@@ -6,10 +6,10 @@ export default class Device extends Card {
   constructor(container) {
     super(container, "User Agent");
 
-    this.errorCatcher(this.createCard);
+    this.errorCatcher(this.fillCardData);
   }
 
-  createCard = () => {
+  fillCardData = () => {
     const deviceDetector = new DeviceDetector();
     const userAgent = navigator.userAgent;
     const device = deviceDetector.parse(userAgent);

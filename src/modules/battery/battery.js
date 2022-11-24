@@ -1,14 +1,14 @@
 import Control from "control";
 import Card from "card";
 
-export default class Battery extends Card{
+export default class Battery extends Card {
   constructor(container) {
     super(container, "Battery");
 
-    this.errorCatcher(this.createCard);
+    this.errorCatcher(this.fillCardData);
   }
 
-  createCard = () => {
+  fillCardData = () => {
     navigator.getBattery().then((battery) => {
       const batteryBox = new Control(this.card.node, "div", "batteryBox");
       const charge = new Control(batteryBox.node, "div", "charge");
@@ -42,5 +42,5 @@ export default class Battery extends Card{
         }
       }
     });
-  }
+  };
 }
