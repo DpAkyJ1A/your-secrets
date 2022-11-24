@@ -3,8 +3,8 @@ import Control from "../control";
 export default class Popup {
   popup
   popupContent
-  constructor() {
-    this.popup = new Control(document.body, "div", "popup");
+  constructor(node) {
+    this.popup = new Control(node, "div", "popup");
     this.popupContent = new Control(this.popup.node, "div", "popup__content");
 
     this.popup.node.onclick = (event) => {

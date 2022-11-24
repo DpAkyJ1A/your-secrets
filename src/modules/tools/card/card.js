@@ -20,7 +20,7 @@ export default class Card {
       "card__info"
     );
     this.cardInfo.node.setAttribute("name", "information-circle-outline");
-    this.popup = new Popup();
+    this.popup = new Popup(this.card.node);
     this.cardInfo.node.onclick = this.popup.show;
   }
 
