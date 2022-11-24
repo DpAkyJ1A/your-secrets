@@ -5,6 +5,10 @@ export default class Specification extends Card {
   constructor(container) {
     super(container, "Specification");
 
+    this.errorCatcher(this.createCard);
+  }
+
+  createCard = () => {
     const content = new Control(this.card.node, "div", "card__content");
     const storageManager = navigator.storage;
     storageManager.estimate().then((data) => {

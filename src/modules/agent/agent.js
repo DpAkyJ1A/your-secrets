@@ -6,12 +6,15 @@ export default class Device extends Card {
   constructor(container) {
     super(container, "User Agent");
 
-    const content = new Control(this.card.node, "div", "card__content");
+    this.errorCatcher(this.createCard);
+  }
 
+  createCard = () => {
     const deviceDetector = new DeviceDetector();
     const userAgent = navigator.userAgent;
     const device = deviceDetector.parse(userAgent);
 
+    const content = new Control(this.card.node, "div", "card__content");
     // Device
     const [deviceType, deviceBrand, deviceModel] = [
       device.device.type,
@@ -139,5 +142,5 @@ export default class Device extends Card {
         new Control(content.node, "h3", "card__text", `URL: ${botUrl}`);
       }
     }
-  }
+  };
 }

@@ -23,4 +23,16 @@ export default class Card {
     this.popup = new Popup();
     this.cardInfo.node.onclick = this.popup.show;
   }
+
+  errorCatcher = (func) => {
+    try {
+      func();
+    } catch (error) {
+      this.addErrorMessage(this.card.node);
+    }
+  }
+
+  addErrorMessage = (node) => {
+    new Control(node, "h3", "card__error", "I can't get this information :(");
+  }
 }

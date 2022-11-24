@@ -4,8 +4,16 @@ import Card from "card";
 export default class Clipboard extends Card {
   constructor(container) {
     super(container, "Clipboard");
-    
-    const clipboardText = new Control(this.card.node, "textarea", "clipboard-text");
+
+    this.errorCatcher(this.createCard);
+  }
+
+  createCard = () => {
+    const clipboardText = new Control(
+      this.card.node,
+      "textarea",
+      "clipboard-text"
+    );
     clipboardText.node.setAttribute("placeholder", "Press the button below :)");
 
     const controls = new Control(this.card.node, "div", "controls");
@@ -28,5 +36,5 @@ export default class Clipboard extends Card {
       "btn",
       "Open"
     );
-  }
+  };
 }

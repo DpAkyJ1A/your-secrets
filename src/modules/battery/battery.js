@@ -5,12 +5,16 @@ export default class Battery extends Card{
   constructor(container) {
     super(container, "Battery");
 
-    const batteryBox = new Control(this.card.node, 'div', 'batteryBox');
-    const charge = new Control(batteryBox.node, 'div', 'charge');
+    this.errorCatcher(this.createCard);
+  }
 
-    const chargePercent = new Control(this.card.node, "h3", "card__text");
-
+  createCard = () => {
     navigator.getBattery().then((battery) => {
+      const batteryBox = new Control(this.card.node, "div", "batteryBox");
+      const charge = new Control(batteryBox.node, "div", "charge");
+
+      const chargePercent = new Control(this.card.node, "h3", "card__text");
+
       updateLevelInfo();
       // Battery percentage
       battery.addEventListener("levelchange", () => {
