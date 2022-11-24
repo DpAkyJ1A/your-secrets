@@ -6,6 +6,7 @@
   left: 0;
   z-index: 1;
   display: none;
+  opacity: 0;
   background: rgba(0, 0, 0, 0.7);
 }
 
@@ -13,11 +14,84 @@
   padding: 25px;
   background: white;
   border-radius: 16px;
-  min-width: 250px;
+  min-width: 350px;
+  min-height: 250px;
+
+  animation-duration: 0.5s;
+  animation-name: slideIn;
+  animation-fill-mode: forwards;
 }
 
 .popup.active{
   display: flex;
   justify-content: center;
   align-items: center;
+
+  animation-duration: 0.5s;
+  animation-name: appear;
+  animation-fill-mode: forwards;
+}
+
+.popup.remove{
+  animation-duration: 0.5s;
+  animation-name: disappear;
+  animation-fill-mode: forwards;
+}
+
+.popup.remove .popup__content{
+  animation-duration: 0.5s;
+  animation-name: slideOut;
+  animation-fill-mode: forwards;
+}
+
+.popup__header{
+  color: black;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+
+  to {
+   opacity: 1;
+  }
+}
+
+@keyframes disappear {
+  from {
+    opacity: 1;
+  }
+
+  to {
+   opacity: 0;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    margin-top: 100%;
+  }
+
+  to {
+    margin-top: 0;
+  }
+
+  40% {
+    margin-top: 0;
+  }
+
+  60% {
+    margin-top: 2%;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    margin-top: 0;
+  }
+
+  to {
+    margin-top: 100%;
+  }
 }

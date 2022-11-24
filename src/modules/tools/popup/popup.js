@@ -20,7 +20,11 @@ export default class Popup {
   }
 
   hide = () => {
-    this.popup.node.classList.remove("active");
+    this.popup.node.classList.add("remove");
     document.body.style.overflow = "unset";
+    setTimeout(() => {
+      this.popup.node.classList.remove("active");
+      this.popup.node.classList.remove("remove");
+    }, 500);
   }
 }
