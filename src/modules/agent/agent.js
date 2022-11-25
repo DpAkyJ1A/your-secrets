@@ -7,6 +7,7 @@ export default class Device extends Card {
     super(container, "User Agent");
 
     this.errorCatcher(this.fillCardData);
+    this.fillPopupData();
   }
 
   fillCardData = () => {
@@ -143,4 +144,7 @@ export default class Device extends Card {
       }
     }
   };
+
+  fillPopupData = () => {
+  }
 }
