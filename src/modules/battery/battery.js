@@ -1,11 +1,13 @@
 import Control from "control";
 import Card from "card";
+import CompatibilityTable from "../tools/compatibilityTable/compatibilityTable";
 
 export default class Battery extends Card {
   constructor(container) {
     super(container, "Battery");
 
     this.errorCatcher(this.fillCardData);
+    this.fillPopupData();
   }
 
   fillCardData = () => {
@@ -42,5 +44,9 @@ export default class Battery extends Card {
         }
       }
     });
+  };
+
+  fillPopupData = () => {
+    new CompatibilityTable(this.popup.popupContent.node, "getBattery");
   };
 }

@@ -1,0 +1,38 @@
+.tables-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items:flex-end;
+
+  gap: 1em;
+}
+
+.compatibility-table {
+  border-spacing: 5px;
+}
+
+.compatibility-table thead tr:first-child th {
+  font-size: 1.2em;
+}
+
+.compatibility-table thead tr th {
+  height: 55.2px;
+}
+
+.compatibility-table tbody tr td, .compatibility-table tbody tr th {
+  text-align: center;
+}
+
+.compatibility-table tbody tr td {
+  color: white;
+  min-width: 78px;
+  width: 78px;
+  height: 30px;
+}
+
+.supported {
+  background-color: $color-green-darken;
+}
+
+.not-supported {
+  background-color: $color-red-darken;
+}

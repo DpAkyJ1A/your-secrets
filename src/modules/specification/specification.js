@@ -1,11 +1,13 @@
 import Control from "control";
 import Card from "card";
+import CompatibilityTable from "../tools/compatibilityTable/compatibilityTable";
 
 export default class Specification extends Card {
   constructor(container) {
     super(container, "Specification");
 
     this.errorCatcher(this.fillCardData);
+    this.fillPopupData();
   }
 
   fillCardData = () => {
@@ -41,5 +43,9 @@ export default class Specification extends Card {
         `Using percentage: ${(usageInGigabytes / quotaInGigabytes).toFixed(2)}%`
       );
     });
+  };
+
+  fillPopupData = () => {
+    new CompatibilityTable(this.popup.popupContent.node, "storage");
   };
 }

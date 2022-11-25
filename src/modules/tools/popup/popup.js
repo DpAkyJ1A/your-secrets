@@ -1,5 +1,4 @@
 import Control from "../control";
-// const bcd = require("@mdn/browser-compat-data");
 
 export default class Popup {
   popup

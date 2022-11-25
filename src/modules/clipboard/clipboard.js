@@ -1,11 +1,13 @@
 import Control from "control";
 import Card from "card";
+import CompatibilityTable from "../tools/compatibilityTable/compatibilityTable";
 
 export default class Clipboard extends Card {
   constructor(container) {
     super(container, "Clipboard");
 
     this.errorCatcher(this.fillCardData);
+    this.fillPopupData();
   }
 
   fillCardData = () => {
@@ -36,5 +38,9 @@ export default class Clipboard extends Card {
       "btn",
       "Open"
     );
+  };
+
+  fillPopupData = () => {
+    new CompatibilityTable(this.popup.popupContent.node, "clipboard");
   };
 }
