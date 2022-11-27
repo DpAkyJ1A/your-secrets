@@ -1,10 +1,12 @@
-import Control from "../control";
+import Control from "control";
 const bcd = require("@mdn/browser-compat-data");
 
 export default class CompatibilityTable {
+  mdn_url;
   constructor(node, obj) {
     const data = bcd.api.Navigator[obj].__compat;
-    const mdn_url = data.mdn_url;
+    console.log(data.mdn_url.replace("ru", "en-US"))
+    this.mdn_url = data.mdn_url.replace("org/", "org/en-US/");
     const support = data.support;
 
     console.log(bcd.api.Navigator);

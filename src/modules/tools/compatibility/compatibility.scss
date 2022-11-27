@@ -1,0 +1,23 @@
+@import "./compatibilityTable/compatibilityTable.scss";
+
+.compatibility-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.subtitle {
+  font-size: 1.4em;
+}
+
+.link {
+  display: block;
+  width: fit-content;
+  margin-left: auto;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.link:hover {
+  color: gray;
+}

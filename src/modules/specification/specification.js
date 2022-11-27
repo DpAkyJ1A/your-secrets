@@ -1,6 +1,6 @@
 import Control from "control";
 import Card from "card";
-import CompatibilityTable from "../tools/compatibilityTable/compatibilityTable";
+import Compatibility from "../tools/compatibility/compatibility";
 
 export default class Specification extends Card {
   constructor(container) {
@@ -46,6 +46,6 @@ export default class Specification extends Card {
   };
 
   fillPopupData = () => {
-    new CompatibilityTable(this.popup.popupContent.node, "storage");
+    new Compatibility(this.popup.popupContent.node, "storage");
   };
 }

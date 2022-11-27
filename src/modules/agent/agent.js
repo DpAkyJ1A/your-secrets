@@ -1,7 +1,7 @@
 import Control from "control";
 import Card from "card";
 import DeviceDetector from "device-detector-js";
-import CompatibilityTable from "../tools/compatibilityTable/compatibilityTable";
+import Compatibility from "../tools/compatibility/compatibility";
 
 export default class Device extends Card {
   constructor(container) {
@@ -147,6 +147,6 @@ export default class Device extends Card {
   };
 
   fillPopupData = () => {
-    new CompatibilityTable(this.popup.popupContent.node, "userAgent");
-  }
+    new Compatibility(this.popup.popupContent.node, "userAgent");
+  };
 }
