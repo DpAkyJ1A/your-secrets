@@ -24,7 +24,12 @@ export default class Device extends Card {
       device.device.model,
     ];
     if (deviceType || deviceBrand || deviceModel) {
-      new Control(content.node, "h3", "card__text", `----- Device -----`);
+      new Control(
+        content.node,
+        "h3",
+        "card__text subheader",
+        `Device`
+      );
     }
     if (deviceType) {
       new Control(content.node, "h3", "card__text", `Type: ${deviceType}`);
@@ -43,7 +48,7 @@ export default class Device extends Card {
       device.os.platform,
     ];
     if (osName || osVersion || osPlatform) {
-      new Control(content.node, "h3", "card__text", `----- OS -----`);
+      new Control(content.node, "h3", "card__text subheader", `OS`);
     }
     if (osName) {
       new Control(content.node, "h3", "card__text", `Name: ${osName}`);
@@ -79,7 +84,12 @@ export default class Device extends Card {
       clientEngineVersion ||
       clientURL
     ) {
-      new Control(content.node, "h3", "card__text", `----- Client -----`);
+      new Control(
+        content.node,
+        "h3",
+        "card__text subheader",
+        `Client`
+      );
     }
     if (clientType) {
       new Control(content.node, "h3", "card__text", `Type: ${clientType}`);
@@ -119,7 +129,12 @@ export default class Device extends Card {
         device.bot.url,
       ];
       if (botCategory || botName || botProducer || botUrl) {
-        new Control(content.node, "h3", "card__text", `----- Bot -----`);
+        new Control(
+          content.node,
+          "h3",
+          "card__text subheader",
+          `Bot`
+        );
       }
       if (botCategory) {
         new Control(
