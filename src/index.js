@@ -5,4 +5,4 @@ const root = document.querySelector('#root');
 
 new Layout(root);
 
-document.body.classList.add("dark-theme");
+document.body.classList.add(localStorage.getItem("theme") || "dark-theme");

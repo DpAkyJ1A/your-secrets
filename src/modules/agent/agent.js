@@ -4,6 +4,8 @@ import DeviceDetector from "device-detector-js";
 import Compatibility from "../tools/compatibility/compatibility";
 
 export default class Device extends Card {
+  userAgent;
+
   constructor(container) {
     super(container, "User Agent");
 
@@ -13,8 +15,8 @@ export default class Device extends Card {
 
   fillCardData = () => {
     const deviceDetector = new DeviceDetector();
-    const userAgent = navigator.userAgent;
-    const device = deviceDetector.parse(userAgent);
+    this.userAgent = navigator.userAgent;
+    const device = deviceDetector.parse(this.userAgent);
 
     const content = new Control(this.card.node, "div", "card__content");
     // Device
@@ -23,23 +25,12 @@ export default class Device extends Card {
       device.device.brand,
       device.device.model,
     ];
-    if (deviceType || deviceBrand || deviceModel) {
-      new Control(
-        content.node,
-        "h3",
-        "card__text subheader",
-        `Device`
-      );
-    }
-    if (deviceType) {
-      new Control(content.node, "h3", "card__text", `Type: ${deviceType}`);
-    }
-    if (deviceBrand) {
-      new Control(content.node, "h3", "card__text", `Brand: ${deviceBrand}`);
-    }
-    if (deviceModel) {
-      new Control(content.node, "h3", "card__text", `Model: ${deviceModel}`);
-    }
+
+    new Control(content.node, "h3", "card__text subheader", `Device`);
+
+    new Control(content.node, "h4", "card__text", `Type: ${this.getHTML(deviceType)}`);
+    new Control(content.node, "h4", "card__text", `Brand: ${this.getHTML(deviceBrand)}`);
+    new Control(content.node, "h4", "card__text", `Model: ${this.getHTML(deviceModel)}`);
 
     // OS
     const [osName, osVersion, osPlatform] = [
@@ -47,18 +38,12 @@ export default class Device extends Card {
       device.os.version,
       device.os.platform,
     ];
-    if (osName || osVersion || osPlatform) {
-      new Control(content.node, "h3", "card__text subheader", `OS`);
-    }
-    if (osName) {
-      new Control(content.node, "h3", "card__text", `Name: ${osName}`);
-    }
-    if (osVersion) {
-      new Control(content.node, "h3", "card__text", `Version: ${osVersion}`);
-    }
-    if (osPlatform) {
-      new Control(content.node, "h3", "card__text", `Platform: ${osPlatform}`);
-    }
+
+    new Control(content.node, "h3", "card__text subheader", `OS`);
+
+    new Control(content.node, "h4", "card__text", `Name: ${this.getHTML(osName)}`);
+    new Control(content.node, "h4", "card__text", `Version: ${this.getHTML(osVersion)}`);
+    new Control(content.node, "h4", "card__text", `Platform: ${this.getHTML(osPlatform)}`);
 
     // Client
     const [
@@ -76,92 +61,42 @@ export default class Device extends Card {
       device.client.engineVersion,
       device.client.url,
     ];
-    if (
-      clientType ||
-      clientName ||
-      clientVersion ||
-      clientEngine ||
-      clientEngineVersion ||
-      clientURL
-    ) {
-      new Control(
-        content.node,
-        "h3",
-        "card__text subheader",
-        `Client`
-      );
-    }
-    if (clientType) {
-      new Control(content.node, "h3", "card__text", `Type: ${clientType}`);
-    }
-    if (clientName) {
-      new Control(content.node, "h3", "card__text", `Name: ${clientName}`);
-    }
-    if (clientVersion) {
-      new Control(
-        content.node,
-        "h3",
-        "card__text",
-        `Version: ${clientVersion}`
-      );
-    }
-    if (clientEngine) {
-      new Control(content.node, "h3", "card__text", `Engine: ${clientEngine}`);
-    }
-    if (clientEngineVersion) {
-      new Control(
-        content.node,
-        "h3",
-        "card__text",
-        `Engine Version: ${clientEngineVersion}`
-      );
-    }
-    if (clientURL) {
-      new Control(content.node, "h3", "card__text", `URL: ${clientURL}`);
-    }
+
+    new Control(content.node, "h3", "card__text subheader", `Client`);
+    new Control(content.node, "h4", "card__text", `Type: ${this.getHTML(clientType)}`);
+    new Control(content.node, "h4", "card__text", `Name: ${this.getHTML(clientName)}`);
+    new Control(content.node, "h4", "card__text", `Version: ${this.getHTML(clientVersion)}`);
+    new Control(content.node, "h4", "card__text", `Engine: ${this.getHTML(clientEngine)}`);
+    new Control(content.node, "h4", "card__text", `Engine Version: ${this.getHTML(clientEngineVersion)}`);
+    new Control(content.node, "h4", "card__text", `Client URL: ${this.getHTML(clientURL)}`);
 
     // Bot
-    if (device.bot) {
-      const [botCategory, botName, botProducer, botUrl] = [
-        device.bot.category,
-        device.bot.name,
-        device.bot.producer,
-        device.bot.url,
-      ];
-      if (botCategory || botName || botProducer || botUrl) {
-        new Control(
-          content.node,
-          "h3",
-          "card__text subheader",
-          `Bot`
-        );
-      }
-      if (botCategory) {
-        new Control(
-          content.node,
-          "h3",
-          "card__text",
-          `Category: ${botCategory}`
-        );
-      }
-      if (botName) {
-        new Control(content.node, "h3", "card__text", `Name: ${botName}`);
-      }
-      if (botProducer) {
-        new Control(
-          content.node,
-          "h3",
-          "card__text",
-          `Producer: ${botProducer}`
-        );
-      }
-      if (botUrl) {
-        new Control(content.node, "h3", "card__text", `URL: ${botUrl}`);
-      }
-    }
   };
 
+  getHTML = (data) => {
+    let node = "";
+    if (data) {
+      node = `<span>${data}</span>`;
+    } else {
+      node = `<span class="card__error">—</span>`;
+    }
+    return node;
+  }
+
   fillPopupData = () => {
+    const descriptionWrapper = new Control(
+      this.popup.popupContent.node,
+      "div",
+      "description-wrapper"
+    );
+
+    descriptionWrapper.node.innerHTML = `
+      <p>The <strong><code class="${localStorage.getItem("theme")}">Navigator.userAgent</code></strong> read-only property returns the user agent string for the current browser.</p>
+      <p>It returns for you:</p>
+      <code class="${localStorage.getItem("theme")}">${this.userAgent}</code>
+      <p>But for more human-readable output i use <a class="link" href="https://www.npmjs.com/package/device-detector-js">device-detector-js</a>.</p>
+    `;
+
     new Compatibility(this.popup.popupContent.node, "userAgent");
   };
 }

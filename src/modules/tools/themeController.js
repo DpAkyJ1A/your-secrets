@@ -5,6 +5,7 @@ export default class ThemeController {
 
   constructor() {
     this.theme = localStorage.getItem("theme") || this.defaultTheme;
+    localStorage.setItem("theme", `${this.theme}`);
   }
 
   getTheme = () => {
@@ -19,5 +20,6 @@ export default class ThemeController {
   
   setNextTheme = () => {
     this.theme = this.getNextTheme();
+    localStorage.setItem("theme", `${this.theme}`);
   }
 }

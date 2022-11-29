@@ -11,10 +11,13 @@
   font-weight: bold;
 }
 
-.link {
+.compatibility-wrapper .link{
   display: block;
   width: fit-content;
   margin-left: auto;
+}
+
+.link {
   color: inherit;
   transition: color 0.2s ease;
 }
