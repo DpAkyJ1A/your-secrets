@@ -1,22 +1,42 @@
 .batteryBox{
   height: 100px;
   width: 250px;
-  border: 5px solid white;
   position: relative;
   display: flex;
   align-items: center;
+  border-width: 5px;
+  border-style: solid;
   border-radius: 5px;
+
+  transition: all 0.5s ease;
+}
+
+.batteryBox.dark-theme{
+  border-color: white;
+}
+
+.batteryBox.light-theme{
+  border-color: $color-text-light;
 }
 
 .batteryBox::after{
   content: '';
   height: 25px;
   width: 10px;
-  background: white;
   position: absolute;
   right: -15px;
   border-bottom-right-radius: 5px;
   border-top-right-radius: 5px;
+  
+  transition: all 0.5s ease;
+}
+
+.batteryBox.dark-theme::after{
+  background: white;
+}
+
+.batteryBox.light-theme::after{
+  background: $color-text-light;
 }
 
 .charge{
