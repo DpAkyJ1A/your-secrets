@@ -6,7 +6,7 @@ export default class Compatibility {
   compatibilityTablesWrapper;
   constructor(node, obj) {
     this.compatibilityWrapper = new Control(node, "div", "compatibility-wrapper");
-    new Control(this.compatibilityWrapper.node, "h3", "subtitle", "Compatibility");
+    new Control(this.compatibilityWrapper.node, "h3", "subtitle", "Browser compatibility");
     this.compatibilityTablesWrapper = new CompatibilityTable(
       this.compatibilityWrapper.node,
       obj
