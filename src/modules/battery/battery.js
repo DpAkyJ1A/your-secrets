@@ -3,6 +3,10 @@ import Card from "card";
 import Compatibility from "../tools/compatibility/compatibility";
 
 export default class Battery extends Card {
+  chargingTime
+  dischargingTime
+  chargingTimeInfo
+
   constructor(container) {
     super(container, "Battery");
 
@@ -43,10 +47,47 @@ export default class Battery extends Card {
           );
         }
       }
+
+      // Battery charging time
+      this.chargingTime = battery.chargingTime;
+      this.dischargingTime = battery.dischargingTime;
+      console.log(this.chargingTime, this.dischargingTime);
+      battery.addEventListener("chargingtimechange", () => {
+        this.chargingTime = battery.chargingTime;
+        this.changeChargingTimeDataInPopup();
+      });
+      battery.addEventListener("dischargingtimechange", () => {
+        this.dischargingTime = battery.dischargingTime;
+        this.changeChargingTimeDataInPopup();
+      });
     });
   };
 
   fillPopupData = () => {
+    const descriptionWrapper = new Control(
+      this.popup.popupContent.node,
+      "div",
+      "description-wrapper"
+    );
+
+    descriptionWrapper.node.innerHTML = `
+      <p>The <strong><code class="${localStorage.getItem("theme")}">Navigator.getBattery()</code></strong> method provides information about the system's battery.</p>
+      <p>It returns <strong><code class="${localStorage.getItem("theme")}">BatteryManager</code></strong> object which provide also some new events you can handle to monitor the battery status.</p>
+      <p>BatteryManager can determine if the device is charging, the level of charge as well as the approximate time required for complete charge and discharge.</p>
+      <p>For some reason, I could not get the exact charging time for my device and did not add this information to the card, but maybe it will be possible to find out the time for your device...</p>
+    `;
+
+    const chargingTime = new Control(descriptionWrapper.node, "p");
+
+    this.chargingTimeInfo = new Control(chargingTime.node, "code", "", `Time to charge: ${this.chargingTime}\tTime to discharge: ${this.dischargingTime}`);
+
     new Compatibility(this.popup.popupContent.node, "getBattery");
   };
+
+  changeChargingTimeDataInPopup = () => {
+    this.chargingTimeInfo.node.innerHTML = `
+    Time to charge: ${this.chargingTime}
+    Time to discharge: ${this.dischargingTime}
+    `;
+  }
 }
