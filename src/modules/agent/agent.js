@@ -94,7 +94,10 @@ export default class Device extends Card {
       <p>The <strong><code class="${localStorage.getItem("theme")}">Navigator.userAgent</code></strong> read-only property returns the user agent string for the current browser.</p>
       <p>It returns for you:</p>
       <code class="${localStorage.getItem("theme")}">${this.userAgent}</code>
-      <p>But for more human-readable output i use <a class="link" href="https://www.npmjs.com/package/device-detector-js">device-detector-js</a>.</p>
+      <p>But for more human-readable output i use <a class="link" href="https://www.npmjs.com/package/device-detector-js">device-detector-js</a>. 
+      This is a user agent parser which can detect the browser, operating system, device used (desktop, tablet, mobile, tv, cars, console, etc.), brand and model.
+      Also device detector can identify a bot.
+      </p>
     `;
 
     new Compatibility(this.popup.popupContent.node, "userAgent");
