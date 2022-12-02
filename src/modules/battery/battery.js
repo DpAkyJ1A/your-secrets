@@ -85,9 +85,6 @@ export default class Battery extends Card {
   };
 
   changeChargingTimeDataInPopup = () => {
-    this.chargingTimeInfo.node.innerHTML = `
-    Time to charge: ${this.chargingTime}
-    Time to discharge: ${this.dischargingTime}
-    `;
+    this.chargingTimeInfo.node.innerHTML = `Time to charge: ${this.chargingTime}\tTime to discharge: ${this.dischargingTime}`;
   }
 }
