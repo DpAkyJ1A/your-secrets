@@ -15,9 +15,11 @@
   border-radius: 20px;
   min-width: 350px;
   width: 1030px;
+  max-width: 1030px;
   min-height: 250px;
+  height: 600px;
+  max-height: 600px;
 
-  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,6 +28,8 @@
   animation-duration: 0.5s;
   animation-name: slideIn;
   animation-fill-mode: forwards;
+
+  overflow-y: scroll;
 }
 
 .popup__content.dark-theme{
@@ -108,4 +112,8 @@
   to {
     margin-top: 100%;
   }
+}
+
+.popup__content p{
+  line-height: 1.3em;
 }

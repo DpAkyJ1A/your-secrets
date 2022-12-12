@@ -2,27 +2,50 @@ import Control from "control";
 const bcd = require("@mdn/browser-compat-data");
 
 export default class CompatibilityTable {
+  data;
   mdn_url;
+  support;
   constructor(node, obj) {
-    const data = bcd.api.Navigator[obj].__compat;
-    console.log(data.mdn_url.replace("ru", "en-US"))
-    this.mdn_url = data.mdn_url.replace("org/", "org/en-US/");
-    const support = data.support;
+    let propsNames;
 
-    console.log(bcd.api.Navigator);
+    if (bcd.api.Navigator.hasOwnProperty(obj)) {
+      this.data = bcd.api.Navigator[obj].__compat;
+      this.mdn_url = this.data.mdn_url.replace("org/", "org/en-US/");
+      this.support = [this.data.support];
+      propsNames = [obj];
+    } else if (bcd.api.hasOwnProperty(obj)) {
+      this.data = bcd.api[obj];
+      this.mdn_url = this.data.__compat.mdn_url.replace("org/", "org/en-US/");
+      propsNames = Object.keys(this.data).filter((name) => name !== "__compat");
+      this.support = propsNames.map((name) => this.data[name].__compat.support);
+    } else {
+      this.data = null;
+    }
 
-    const tablesWrapper = new Control(node, "div", "tables-wrapper");
+    const slider = new Control(node, "div", "slider");
+    const tablesWrapper = new Control(slider.node, "div", "tables-wrapper");
+    const desktopTableWrapper = new Control(tablesWrapper.node, "div", "table-wrapper");
+    this.desktopBrowsersTableCreate(desktopTableWrapper.node, this.support, propsNames);
+    const mobileTableWrapper = new Control(tablesWrapper.node, "div", "table-wrapper");
+    this.mobileBrowsersTableCreate(mobileTableWrapper.node, this.support, propsNames);
 
-    this.desktopBrowsersTableCreate(tablesWrapper.node, support);
-    this.mobileBrowsersTableCreate(tablesWrapper.node, support);
+    this.controlArrowsCreate(slider.node, tablesWrapper.node);
+
+    if (!Array.isArray(this.data) && this.data) {
+      // console.log(bcd.api.Navigator);
+      // console.log(bcd.api);
+    }
   }
 
-  desktopBrowsersTableCreate = (node, support) => {
+  desktopBrowsersTableCreate = (node, support, keys) => {
     const table = new Control(node, "table", "compatibility-table");
 
     const thead = new Control(table.node, "thead", "compatibility-table-head");
-
     const platforms = new Control(thead.node, "tr");
+
+    const emptyCell = new Control(platforms.node, "th", "", ""); // empty cell
+    emptyCell.node.setAttribute("rowspan", "2");
+
     const desktop = new Control(platforms.node, "th", "", "Desktop");
     desktop.node.setAttribute("colspan", "5");
 
@@ -35,26 +58,33 @@ export default class CompatibilityTable {
     const opera = new Control(browsers.node, "th", "", "Opera");
 
     const tbody = new Control(table.node, "tbody", "compatibility-table-body");
-
-    const versions = new Control(tbody.node, "tr");
-    // chrome
-    this.versionsTdCreate(versions.node, support.chrome);
-    // edge
-    this.versionsTdCreate(versions.node, support.edge);
-    // safari
-    this.versionsTdCreate(versions.node, support.safari);
-    // firefox
-    this.versionsTdCreate(versions.node, support.firefox);
-    // opera
-    this.versionsTdCreate(versions.node, support.opera);
+    
+    keys.map((key, i) => {
+      console.log(support);
+      const versions = new Control(tbody.node, "tr");
+      const name = new Control(versions.node, "th", "row-name", `${key}`);
+      // chrome
+      this.versionsTdCreate(versions.node, support[i].chrome);
+      // edge
+      this.versionsTdCreate(versions.node, support[i].edge);
+      // safari
+      this.versionsTdCreate(versions.node, support[i].safari);
+      // firefox
+      this.versionsTdCreate(versions.node, support[i].firefox);
+      // opera
+      this.versionsTdCreate(versions.node, support[i].opera);
+    });
   };
 
-  mobileBrowsersTableCreate = (node, support) => {
+  mobileBrowsersTableCreate = (node, support, keys) => {
     const table = new Control(node, "table", "compatibility-table");
 
     const thead = new Control(table.node, "thead", "compatibility-table-head");
     const platforms = new Control(thead.node, "tr");
 
+    const emptyCell = new Control(platforms.node, "th", "", ""); // empty cell
+    emptyCell.node.setAttribute("rowspan", "2");
+    
     const mobile = new Control(platforms.node, "th", "", "Mobile");
     mobile.node.setAttribute("colspan", "6");
 
@@ -69,20 +99,23 @@ export default class CompatibilityTable {
 
     const tbody = new Control(table.node, "tbody", "compatibility-table-body");
 
-    const versions = new Control(tbody.node, "tr");
-    // chromeForAndroid
-    this.versionsTdCreate(versions.node, support.chrome_android);
-    // firefoxForAndroid
-    this.versionsTdCreate(versions.node, support.firefox_android);
-    // operaForAndroid
-    this.versionsTdCreate(versions.node, support.opera_android);
-    // safariOnIos
-    this.versionsTdCreate(versions.node, support.safari_ios);
-    // samsungInternet
-    this.versionsTdCreate(versions.node, support.samsunginternet_android);
-    // webViewAndroid
-    this.versionsTdCreate(versions.node, support.webview_android);
-  };
+    keys.map((key, i) => {
+      const versions = new Control(tbody.node, "tr");
+      const name = new Control(versions.node, "th", "row-name", `${key}`);
+      // chromeForAndroid
+      this.versionsTdCreate(versions.node, support[i].chrome_android);
+      // firefoxForAndroid
+      this.versionsTdCreate(versions.node, support[i].firefox_android);
+      // operaForAndroid
+      this.versionsTdCreate(versions.node, support[i].opera_android);
+      // safariOnIos
+      this.versionsTdCreate(versions.node, support[i].safari_ios);
+      // samsungInternet
+      this.versionsTdCreate(versions.node, support[i].samsunginternet_android);
+      // webViewAndroid
+      this.versionsTdCreate(versions.node, support[i].webview_android);
+    });
+  };;
 
   versionsTdCreate = (node, data) => {
     if (data.version_removed) {
@@ -98,4 +131,26 @@ export default class CompatibilityTable {
       new Control(node, "td", "not-supported", `-`);
     }
   };
+
+  controlArrowsCreate = (node, tablesWrapper) => {
+    const rightArrow = new Control(node, "ion-icon", "right-arrow");
+    rightArrow.node.setAttribute("name", "chevron-forward-outline");
+    const leftArrow = new Control(node, "ion-icon", "left-arrow disabled");
+    leftArrow.node.setAttribute("name", "chevron-back-outline");
+
+    rightArrow.node.onclick = () => {
+      disabledToggle();
+      tablesWrapper.style.marginLeft = "-966px";
+    };
+    
+    leftArrow.node.onclick = () => {
+      disabledToggle();
+      tablesWrapper.style.marginLeft = "0";
+    };
+
+    const disabledToggle = () => {
+      rightArrow.node.classList.toggle("disabled");
+      leftArrow.node.classList.toggle("disabled");
+    }
+  }
 }

@@ -1,9 +1,23 @@
+.slider{
+  width: 966px;
+  overflow-x: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
 .tables-wrapper {
+  width: calc(966*2);
   display: flex;
-  justify-content: center;
   align-items:flex-end;
 
-  gap: 1em;
+  transition: margin 0.5s ease;
+}
+
+.table-wrapper {
+  min-width: 966px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .compatibility-table {
@@ -18,8 +32,12 @@
   height: 55.2px;
 }
 
-.compatibility-table tbody tr td, .compatibility-table tbody tr th {
+.compatibility-table tbody tr td {
   text-align: center;
+}
+
+.row-name{
+  text-align: left;
 }
 
 .compatibility-table tbody tr td {
@@ -35,4 +53,28 @@
 
 .not-supported {
   background-color: $color-red-darken;
+}
+
+.right-arrow, .left-arrow {
+  position: absolute;
+  font-size: 8em;
+  top: 50%;
+  transform: translate(0, -50%);
+  
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.right-arrow.disabled, .left-arrow.disabled {
+  opacity: 0;
+  cursor: default;
+  pointer-events: none;
+}
+
+.right-arrow:hover, .left-arrow:hover {
+  color: gray;
+}
+
+.right-arrow {
+  right: 0;
 }
