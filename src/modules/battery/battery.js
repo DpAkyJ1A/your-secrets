@@ -51,7 +51,7 @@ export default class Battery extends Card {
       // Battery charging time
       this.chargingTime = battery.chargingTime;
       this.dischargingTime = battery.dischargingTime;
-      console.log(this.chargingTime, this.dischargingTime);
+
       battery.addEventListener("chargingtimechange", () => {
         this.chargingTime = battery.chargingTime;
         this.changeChargingTimeDataInPopup();
@@ -81,7 +81,7 @@ export default class Battery extends Card {
 
     this.chargingTimeInfo = new Control(chargingTime.node, "code", "", `Time to charge: ${this.chargingTime}\tTime to discharge: ${this.dischargingTime}`);
 
-    new Compatibility(this.popup.popupContent.node, "getBattery");
+    new Compatibility(this.popup.popupContent.node, "BatteryManager");
   };
 
   changeChargingTimeDataInPopup = () => {
