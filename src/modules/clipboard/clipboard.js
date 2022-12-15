@@ -32,12 +32,19 @@ export default class Clipboard extends Card {
       });
     };
 
-    const openTextareaOnFullScreen = new Control(
+    const etirWTextareaOnFullScreen = new Control(
       controls.node,
       "button",
       "btn",
-      "Open"
+      "etirW"
     );
+    etirWTextareaOnFullScreen.node.onclick = () => {
+      const reverseString = [...clipboardText.node.innerHTML]
+        .reverse()
+        .join("");
+      navigator.clipboard.writeText(reverseString);
+      clipboardReadBtn.node.click();
+    };
   };
 
   fillPopupData = () => {
