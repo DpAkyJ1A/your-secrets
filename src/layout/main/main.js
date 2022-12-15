@@ -1,7 +1,7 @@
 import Control from "../../modules/tools/control";
 import Battery from "../../modules/battery/battery";
 import Agent from "../../modules/agent/agent";
-import Specification from "../../modules/specification/specification";
+import Storage from "../../modules/storage/storage";
 import Time from "../../modules/time/time";
 import Clipboard from "../../modules/clipboard/clipboard";
 
@@ -12,7 +12,7 @@ export default class Main {
 
     new Agent(this.main.node);
     new Battery(this.main.node);
-    new Specification(this.main.node);
+    new Storage(this.main.node);
     // works only on server side
     // new Time(this.main.node);
     new Clipboard(this.main.node);

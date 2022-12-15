@@ -57,6 +57,10 @@
   align-items: center;
 }
 
+.card__success {
+  color: $color-green;
+}
+
 .card__error{
   color: $color-red;
 }

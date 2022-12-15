@@ -60,7 +60,6 @@ export default class CompatibilityTable {
     const tbody = new Control(table.node, "tbody", "compatibility-table-body");
     
     keys.map((key, i) => {
-      console.log(support);
       const versions = new Control(tbody.node, "tr");
       const name = new Control(versions.node, "th", "row-name", `${key}`);
       // chrome

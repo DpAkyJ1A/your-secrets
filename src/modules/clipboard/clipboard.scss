@@ -12,27 +12,3 @@
   display: flex;
   justify-content: space-around;
 }
-
-.btn{
-  width: 80px;
-  height: 30px;
-  cursor: pointer;
-  border: none;
-  border-radius: 10px;
-  transition: all 0.5s ease;
-  font-size: 1rem;
-}
-
-.btn.dark-theme{
-  background-color: $color-background-light;
-  color: $color-text-light;
-}
-
-.btn.light-theme{
-  background-color: $color-background-dark;
-  color: $color-text-dark;
-}
-
-.btn:hover{
-  background-color: gray;
-}

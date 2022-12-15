@@ -1,5 +1,7 @@
 @import "./variables.scss";
 
+@import "./btn.scss";
+
 @import "../layout/layout.scss";
 @import "../modules/tools/card/card.scss";
 @import "../modules/tools/popup/popup.scss";
@@ -7,7 +9,7 @@
 
 @import "../modules/battery/battery.scss";
 @import "../modules/agent/agent.scss";
-@import "../modules/specification/specification.scss";
+@import "../modules/storage/storage.scss";
 @import "../modules/clipboard/clipboard.scss";
 
 *{
