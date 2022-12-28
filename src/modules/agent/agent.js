@@ -18,7 +18,9 @@ export default class Device extends Card {
     this.userAgent = navigator.userAgent;
     const device = deviceDetector.parse(this.userAgent);
 
-    const content = new Control(this.card.node, "div", "card__content");
+    const contentWrapper = new Control(this.card.node, "div", "content-wrapper");
+    const osAndDeviceWrapper = new Control(contentWrapper.node, "div", "os-and-device-wrapper");
+
     // Device
     const [deviceType, deviceBrand, deviceModel] = [
       device.device.type,
@@ -26,11 +28,11 @@ export default class Device extends Card {
       device.device.model,
     ];
 
-    new Control(content.node, "h3", "card__text subheader", `Device`);
-
-    new Control(content.node, "h4", "card__text", `Type: ${this.getHTML(deviceType)}`);
-    new Control(content.node, "h4", "card__text", `Brand: ${this.getHTML(deviceBrand)}`);
-    new Control(content.node, "h4", "card__text", `Model: ${this.getHTML(deviceModel)}`);
+    const deviceContent = new Control(osAndDeviceWrapper.node, "div", "card__content");
+    new Control(deviceContent.node, "h3", "card__text subheader", `Device`);
+    new Control(deviceContent.node, "h4", "card__text", `Type: ${this.getHTML(deviceType)}`);
+    new Control(deviceContent.node, "h4", "card__text", `Brand: ${this.getHTML(deviceBrand)}`);
+    new Control(deviceContent.node, "h4", "card__text", `Model: ${this.getHTML(deviceModel)}`);
 
     // OS
     const [osName, osVersion, osPlatform] = [
@@ -39,11 +41,11 @@ export default class Device extends Card {
       device.os.platform,
     ];
 
-    new Control(content.node, "h3", "card__text subheader", `OS`);
-
-    new Control(content.node, "h4", "card__text", `Name: ${this.getHTML(osName)}`);
-    new Control(content.node, "h4", "card__text", `Version: ${this.getHTML(osVersion)}`);
-    new Control(content.node, "h4", "card__text", `Platform: ${this.getHTML(osPlatform)}`);
+    const osContent = new Control(osAndDeviceWrapper.node, "div", "card__content");
+    new Control(osContent.node, "h3", "card__text subheader", `OS`);
+    new Control(osContent.node, "h4", "card__text", `Name: ${this.getHTML(osName)}`);
+    new Control(osContent.node, "h4", "card__text", `Version: ${this.getHTML(osVersion)}`);
+    new Control(osContent.node, "h4", "card__text", `Platform: ${this.getHTML(osPlatform)}`);
 
     // Client
     const [
@@ -62,15 +64,14 @@ export default class Device extends Card {
       device.client.url,
     ];
 
-    new Control(content.node, "h3", "card__text subheader", `Client`);
-    new Control(content.node, "h4", "card__text", `Type: ${this.getHTML(clientType)}`);
-    new Control(content.node, "h4", "card__text", `Name: ${this.getHTML(clientName)}`);
-    new Control(content.node, "h4", "card__text", `Version: ${this.getHTML(clientVersion)}`);
-    new Control(content.node, "h4", "card__text", `Engine: ${this.getHTML(clientEngine)}`);
-    new Control(content.node, "h4", "card__text", `Engine Version: ${this.getHTML(clientEngineVersion)}`);
-    new Control(content.node, "h4", "card__text", `Client URL: ${this.getHTML(clientURL)}`);
-
-    // Bot
+    const clientContent = new Control(contentWrapper.node, "div", "card__content");
+    new Control(clientContent.node, "h3", "card__text subheader", `Client`);
+    new Control(clientContent.node, "h4", "card__text", `Type: ${this.getHTML(clientType)}`);
+    new Control(clientContent.node, "h4", "card__text", `Name: ${this.getHTML(clientName)}`);
+    new Control(clientContent.node, "h4", "card__text", `Version: ${this.getHTML(clientVersion)}`);
+    new Control(clientContent.node, "h4", "card__text", `Engine: ${this.getHTML(clientEngine)}`);
+    new Control(clientContent.node, "h4", "card__text", `Engine Version: ${this.getHTML(clientEngineVersion)}`);
+    new Control(clientContent.node, "h4", "card__text", `Client URL: ${this.getHTML(clientURL)}`);
   };
 
   getHTML = (data) => {
