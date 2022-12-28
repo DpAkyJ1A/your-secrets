@@ -16,7 +16,7 @@ export default class Clipboard extends Card {
       "textarea",
       "clipboard-text"
     );
-    clipboardText.node.setAttribute("placeholder", "Press the button below :)");
+    clipboardText.node.setAttribute("placeholder", "Press buttons below :)");
 
     const controls = new Control(this.card.node, "div", "controls");
 
@@ -28,26 +28,33 @@ export default class Clipboard extends Card {
     );
     clipboardReadBtn.node.onclick = () => {
       navigator.clipboard.readText().then((clipText) => {
-        clipboardText.node.innerText = clipText;
+        clipboardText.node.value = clipText;
+        console.log(clipText);
       });
     };
 
-    const etirWTextareaOnFullScreen = new Control(
+    const copyBackwardsTextarea = new Control(
       controls.node,
       "button",
       "btn",
-      "etirW"
+      "Copy backwards"
     );
-    etirWTextareaOnFullScreen.node.onclick = () => {
-      const reverseString = [...clipboardText.node.innerHTML]
-        .reverse()
-        .join("");
+    copyBackwardsTextarea.node.onclick = () => {
+      const reverseString = [...clipboardText.node.value].reverse().join("");
       navigator.clipboard.writeText(reverseString);
-      clipboardReadBtn.node.click();
+    };
+    const clearTextarea = new Control(
+      controls.node,
+      "button",
+      "btn",
+      "Cls"
+    );
+    clearTextarea.node.onclick = () => {
+      clipboardText.node.value = '';
     };
   };
 
   fillPopupData = () => {
-    new Compatibility(this.popup.popupContent.node, "clipboard");
+    new Compatibility(this.popup.popupContent.node, "Clipboard");
   };
 }
