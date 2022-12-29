@@ -1,6 +1,5 @@
 import Control from "control";
 import Card from "card";
-import Compatibility from "../tools/compatibility/compatibility";
 
 export default class Storage extends Card {
   constructor(container) {
@@ -122,13 +121,7 @@ export default class Storage extends Card {
   // };
 
   fillPopupData = () => {
-    const descriptionWrapper = new Control(
-      this.popup.popupContent.node,
-      "div",
-      "description-wrapper"
-    );
-
-    descriptionWrapper.node.innerHTML = `
+    const description = `
       <p>The <strong><code class="${localStorage.getItem(
         "theme"
       )}">Navigator.storage</code></strong> read-only property returns the singleton StorageManager object used to access the overall storage capabilities of the browser for the current site or app.</p>
@@ -137,6 +130,8 @@ export default class Storage extends Card {
       <p>P.S. It is important to understand that different browsers can store different amounts of data, from a few hundred megabytes to hundreds of gigabytes or more. More about it <a href="https://web.dev/storage-for-the-web/#how-much" class="link">here</a>.</p>
       `;
 
-    new Compatibility(this.popup.popupContent.node, "StorageManager");
+    const compatibilityName = "StorageManager";
+
+    super.fillPopupData(description, compatibilityName);
   };
 }

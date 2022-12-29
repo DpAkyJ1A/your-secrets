@@ -1,6 +1,5 @@
 import Control from "control";
 import Card from "card";
-import Compatibility from "../tools/compatibility/compatibility";
 
 export default class Clipboard extends Card {
   constructor(container) {
@@ -55,21 +54,21 @@ export default class Clipboard extends Card {
   };
 
   fillPopupData = () => {
-    const descriptionWrapper = new Control(
-      this.popup.popupContent.node,
-      "div",
-      "description-wrapper"
-    );
-
-    descriptionWrapper.node.innerHTML = `
-      <p>The <strong><code class="${localStorage.getItem("theme")}">Clipboard</code></strong> 
+    const description = `
+      <p>The <strong><code class="${localStorage.getItem(
+        "theme"
+      )}">Clipboard</code></strong> 
         interface implements the <a class="link" href="https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API">Clipboard API</a>,
         providing (if the user grants permission) both read and write access to the contents of the system clipboard.
       </p>
       <p>The Clipboard API can be used to implement cut, copy, and paste features within a web application.</p>
-      <p>The system clipboard is exposed through the global <strong><code class="${localStorage.getItem("theme")}">Navigator.clipboard</code></strong> property.</p>
+      <p>The system clipboard is exposed through the global <strong><code class="${localStorage.getItem(
+        "theme"
+      )}">Navigator.clipboard</code></strong> property.</p>
     `;
 
-    new Compatibility(this.popup.popupContent.node, "Clipboard");
+    const compatibilityName = "Clipboard";
+
+    super.fillPopupData(description, compatibilityName);
   };
 }

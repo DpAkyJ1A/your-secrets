@@ -1,9 +1,8 @@
 import Control from "control";
 import Card from "card";
 import DeviceDetector from "device-detector-js";
-import Compatibility from "../tools/compatibility/compatibility";
 
-export default class Device extends Card {
+export default class Agent extends Card {
   userAgent;
 
   constructor(container) {
@@ -85,13 +84,7 @@ export default class Device extends Card {
   }
 
   fillPopupData = () => {
-    const descriptionWrapper = new Control(
-      this.popup.popupContent.node,
-      "div",
-      "description-wrapper"
-    );
-
-    descriptionWrapper.node.innerHTML = `
+    const description = `
       <p>The <strong><code class="${localStorage.getItem("theme")}">Navigator.userAgent</code></strong> read-only property returns the user agent string for the current browser.</p>
       <p>It returns for you:</p>
       <code class="${localStorage.getItem("theme")}">${this.userAgent}</code>
@@ -101,6 +94,8 @@ export default class Device extends Card {
       </p>
     `;
 
-    new Compatibility(this.popup.popupContent.node, "userAgent");
+    const compatibilityName = "userAgent";
+
+    super.fillPopupData(description, compatibilityName);
   };
 }
