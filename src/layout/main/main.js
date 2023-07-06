@@ -4,6 +4,7 @@ import Agent from "../../modules/agent/agent";
 import Storage from "../../modules/storage/storage";
 import Time from "../../modules/time/time";
 import Clipboard from "../../modules/clipboard/clipboard";
+import Geolocation from "../../modules/geolocation/geolocation";
 
 export default class Main {
   main;
@@ -16,5 +17,6 @@ export default class Main {
     // works only on server side
     // new Time(this.main.node);
     new Clipboard(this.main.node);
+    new Geolocation(this.main.node);
   }
 }
