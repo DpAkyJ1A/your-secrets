@@ -1,5 +1,6 @@
 import Control from "control";
 import Card from "card";
+import { Loader } from "@googlemaps/js-api-loader";
 
 export default class Geolocation extends Card {
   constructor(container) {
@@ -10,7 +11,21 @@ export default class Geolocation extends Card {
   }
 
   fillCardData = () => {
-    const map = new Control(this.card.node, "div", "map");
+    const map = new Control(this.card.node, "div", "map hide");
+
+    const loader = new Loader({
+      apiKey: "AIzaSyB5DQpWm3AhxvM3OQZ36tBzxYO55QUU_xs",
+      version: "weekly",
+    });
+
+    loader.load().then(async () => {
+      const { Map } = await google.maps.importLibrary("maps");
+
+      new Map(map.node, {
+        center: { lat: -34.397, lng: 150.644 },
+        zoom: 12,
+      });
+    });
 
     const coordsWrapper = new Control(this.card.node, "div", "coords-wrapper");
 
@@ -18,21 +33,21 @@ export default class Geolocation extends Card {
       coordsWrapper.node,
       "h3",
       "latitude",
-      "Latitude: —"
+      "Latitude: &#8212"
     );
 
     const longitude = new Control(
       coordsWrapper.node,
       "h3",
       "longitude",
-      "Longitude: —"
+      "Longitude: &#8212"
     );
 
     const accuracy = new Control(
       this.card.node,
       "h3",
       "accuracy",
-      "Accuracy: —"
+      "Accuracy: &#8212"
     );
 
     const options = {
@@ -47,6 +62,23 @@ export default class Geolocation extends Card {
       latitude.node.innerText = `Latitude: ${crd.latitude}`;
       longitude.node.innerText = `Longitude: ${crd.longitude}`;
       accuracy.node.innerText = `Accuracy: +\\- ${crd.accuracy} meters`;
+
+      loader.load().then(async () => {
+        const { Map } = await google.maps.importLibrary("maps");
+
+        const googleMap = new Map(map.node, {
+          center: { lat: crd.latitude, lng: crd.longitude },
+          zoom: 12,
+        });
+
+        new google.maps.Marker({
+          position: { lat: crd.latitude, lng: crd.longitude },
+          map: googleMap,
+          title: "You are here!",
+        });
+      });
+
+      map.node.classList.remove("hide");
     }
 
     function error(err) {
@@ -65,7 +97,14 @@ export default class Geolocation extends Card {
   };
 
   fillPopupData = () => {
-    const description = ``;
+    const description = `
+    <p>The <strong><code class="${localStorage.getItem(
+      "theme"
+    )}">Geolocation</code></strong> interface represents an object able to obtain the position of the device programmatically. It gives Web content access to the location of the device.</p>
+    <p>Location can be both obtained once and tracked constantly.</p>
+    <p>To get a location, the site must have the appropriate permission, and geolocation is enabled on the device.</p>
+    <p>To display location on map I use <a class="link" href="https://www.npmjs.com/package/@googlemaps/js-api-loader">@googlemaps/js-api-loader</a>.</p>
+    `;
 
     const compatibilityName = "Geolocation";
 
