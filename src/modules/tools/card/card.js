@@ -36,6 +36,7 @@ export default class Card {
       func();
     } catch (error) {
       this.addErrorMessage(this.card.node);
+      console.error(error);
     }
   };
 

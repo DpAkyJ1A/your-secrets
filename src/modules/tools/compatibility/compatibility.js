@@ -18,5 +18,6 @@ export default class Compatibility {
       "For more information click here"
     );
     link.node.setAttribute("href", `${this.compatibilityTablesWrapper.mdn_url}`);
+    link.node.setAttribute("target", "_blank");
   }
 }

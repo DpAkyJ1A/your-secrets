@@ -78,7 +78,7 @@ export default class Agent extends Card {
     if (data) {
       node = `<span>${data}</span>`;
     } else {
-      node = `<span class="card__error">—</span>`;
+      node = `<span class="card__error">&#8212</span>`;
     }
     return node;
   }

@@ -1,5 +1,5 @@
 import Control from "control";
-const bcd = require("@mdn/browser-compat-data");
+import bcd from "@mdn/browser-compat-data";
 
 export default class CompatibilityTable {
   data;
