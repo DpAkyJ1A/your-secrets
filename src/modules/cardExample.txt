@@ -1,0 +1,25 @@
+import Control from "control";
+import Card from "card";
+
+export default class --- extends Card {
+  constructor(container) {
+    super(container, "---");
+
+    this.errorCatcher(this.fillCardData);
+    this.fillPopupData();
+  }
+
+  fillCardData = () => {
+    
+  };
+
+  fillPopupData = () => {
+    const description = `<p>The <strong><code class="${localStorage.getItem(
+      "theme"
+    )}">---</code></strong> ---.</p>`;
+
+    const compatibilityName = "---";
+
+    super.fillPopupData(description, compatibilityName);
+  };
+}

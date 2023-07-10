@@ -5,6 +5,7 @@ import Storage from "../../modules/storage/storage";
 import Time from "../../modules/time/time";
 import Clipboard from "../../modules/clipboard/clipboard";
 import Geolocation from "../../modules/geolocation/geolocation";
+import Connection from "../../modules/connection/connection";
 
 export default class Main {
   main;
@@ -18,5 +19,6 @@ export default class Main {
     // new Time(this.main.node);
     new Clipboard(this.main.node);
     new Geolocation(this.main.node);
+    new Connection(this.main.node);
   }
 }

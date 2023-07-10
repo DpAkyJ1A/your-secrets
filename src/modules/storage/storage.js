@@ -1,5 +1,6 @@
 import Control from "control";
 import Card from "card";
+import getBooleanIcon from "booleanIcon";
 
 export default class Storage extends Card {
   constructor(container) {
@@ -43,12 +44,12 @@ export default class Storage extends Card {
       );
 
       storageManager.persist().then((isGranted) => {
-        const permission = new Control(content.node, "h3", "card__text", ``);
-        if (isGranted) {
-          permission.node.innerHTML = `Browser grants persistent permission <ion-icon name="checkmark-circle-outline" class="card__success permission-icon"></ion-icon>`;
-        } else {
-          permission.node.innerHTML = `Browser NOT grants persistent permission <ion-icon name="close-circle-outline" class="card__error permission-icon"></ion-icon>`;
-        }
+        const permission = new Control(
+          content.node,
+          "h3",
+          "card__text",
+          `Storage permission: ${getBooleanIcon(isGranted)}`
+        );
       });
     });
   };

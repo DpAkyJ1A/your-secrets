@@ -54,7 +54,8 @@ const baseConfig = {
     extensions: [".js"],
     alias: {
       control$: path.resolve(__dirname, "src/modules/tools/control.js"),
-      card$: path.resolve(__dirname, "src/modules/tools/card/card.js")
+      card$: path.resolve(__dirname, "src/modules/tools/card/card.js"),
+      booleanIcon$: path.resolve(__dirname, "src/modules/tools/booleanIcon/booleanIcon.js"),
     },
   },
   output: {
