@@ -19,6 +19,13 @@ export default class Connection extends Card {
 
     const content = new Control(this.card.node, "div", "card__content");
 
+    const isOnline = new Control(
+      content.node,
+      "h4",
+      "card__text",
+      `Online: ${getBooleanIcon(navigator.onLine)}`
+    );
+
     const type = new Control(
       content.node,
       "h4",
@@ -48,10 +55,11 @@ export default class Connection extends Card {
     );
 
     function updateConnectionStatus() {
-      type.node.innerText = `Type: ${getHTML(connection.effectiveType)}`;
-      bandwidthEstimate.node.innerText = `Bandwidth estimate: ${getHTML(connection.downlink)} Mbit/s`;
-      roundTripTime.node.innerText = `Round Trip Time (delay): ${getHTML(connection.rtt)} ms`;
-      trafficSaving.node.innerText = `Traffic saving: ${getBooleanIcon(connection.saveData)}`;
+      isOnline.node.innerHTML = `Online: ${getBooleanIcon(navigator.onLine)}`;
+      type.node.innerHTML = `Type: ${getHTML(connection.effectiveType)}`;
+      bandwidthEstimate.node.innerHTML = `Bandwidth estimate: ${getHTML(connection.downlink)} Mbit/s`;
+      roundTripTime.node.innerHTML = `Round Trip Time (delay): ${getHTML(connection.rtt)} ms`;
+      trafficSaving.node.innerHTML = `Traffic saving: ${getBooleanIcon(connection.saveData)}`;
     }
 
     connection.addEventListener("change", updateConnectionStatus);
