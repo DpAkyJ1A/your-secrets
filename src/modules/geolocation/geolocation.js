@@ -1,6 +1,7 @@
 import Control from "control";
 import Card from "card";
 import { Loader } from "@googlemaps/js-api-loader";
+import { getHTML } from "decoratingFunctions";
 
 export default class Geolocation extends Card {
   constructor(container) {
@@ -31,22 +32,22 @@ export default class Geolocation extends Card {
 
     const latitude = new Control(
       coordsWrapper.node,
-      "h3",
-      "latitude",
+      "h4",
+      "card__text",
       "Latitude: &#8212"
     );
 
     const longitude = new Control(
       coordsWrapper.node,
-      "h3",
-      "longitude",
+      "h4",
+      "card__text",
       "Longitude: &#8212"
     );
 
     const accuracy = new Control(
       this.card.node,
-      "h3",
-      "accuracy",
+      "h4",
+      "card__text",
       "Accuracy: &#8212"
     );
 
@@ -59,9 +60,9 @@ export default class Geolocation extends Card {
     function success(pos) {
       const crd = pos.coords;
 
-      latitude.node.innerText = `Latitude: ${crd.latitude}`;
-      longitude.node.innerText = `Longitude: ${crd.longitude}`;
-      accuracy.node.innerText = `Accuracy: +\\- ${crd.accuracy} meters`;
+      latitude.node.innerHTML = `Latitude: ${getHTML(crd.latitude)}`;
+      longitude.node.innerHTML = `Longitude: ${getHTML(crd.longitude)}`;
+      accuracy.node.innerHTML = `Accuracy: ${getHTML(crd.accuracy.toFixed(2))} meters`;
 
       loader.load().then(async () => {
         const { Map } = await google.maps.importLibrary("maps");

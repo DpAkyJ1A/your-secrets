@@ -6,13 +6,14 @@
 @import "../modules/tools/card/card.scss";
 @import "../modules/tools/popup/popup.scss";
 @import "../modules/tools/compatibility/compatibility.scss";
-@import "../modules/tools/booleanIcon/booleanIcon.scss";
+@import "../modules/tools/decoratingFunctions/decoratingFunctions.scss";
 
 @import "../modules/battery/battery.scss";
 @import "../modules/agent/agent.scss";
 @import "../modules/storage/storage.scss";
 @import "../modules/clipboard/clipboard.scss";
 @import "../modules/geolocation/geolocation.scss";
+@import "../modules/connection/connection.scss";
 
 *{
   margin: 0;

@@ -1,6 +1,6 @@
 import Control from "control";
 import Card from "card";
-import getBooleanIcon from "booleanIcon";
+import { getHTML, getBooleanIcon } from "decoratingFunctions";
 
 export default class Storage extends Card {
   constructor(container) {
@@ -23,30 +23,30 @@ export default class Storage extends Card {
 
       const quota = new Control(
         content.node,
-        "h3",
+        "h4",
         "card__text",
-        `Free space: ${quotaInGigabytes}GB`
+        `Free space: ${getHTML(quotaInGigabytes)} GB`
       );
       // quota.node.setAttribute("data-tooltip", "Tip");
       // <ion-icon name="information-circle-outline"></ion-icon>
 
       new Control(
         content.node,
-        "h3",
+        "h4",
         "card__text",
-        `Usage: ${usageInGigabytes}GB`
+        `Usage: ${getHTML(usageInGigabytes)} GB`
       );
       new Control(
         content.node,
-        "h3",
+        "h4",
         "card__text",
-        `Usage percentage: ${(usageInGigabytes / quotaInGigabytes).toFixed(2)}%`
+        `Usage percentage: ${getHTML((usageInGigabytes / quotaInGigabytes).toFixed(2))} %`
       );
 
       storageManager.persist().then((isGranted) => {
         const permission = new Control(
           content.node,
-          "h3",
+          "h4",
           "card__text",
           `Storage permission: ${getBooleanIcon(isGranted)}`
         );

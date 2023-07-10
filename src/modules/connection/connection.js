@@ -1,6 +1,6 @@
 import Control from "control";
 import Card from "card";
-import getBooleanIcon from "booleanIcon";
+import { getHTML, getBooleanIcon } from "decoratingFunctions";
 
 export default class Connection extends Card {
   constructor(container) {
@@ -21,36 +21,36 @@ export default class Connection extends Card {
 
     const type = new Control(
       content.node,
-      "h3",
+      "h4",
       "card__text",
-      `Type: ${connection.effectiveType}`
+      `Type: ${getHTML(connection.effectiveType)}`
     );
 
     const bandwidthEstimate = new Control(
       content.node,
-      "h3",
+      "h4",
       "card__text",
-      `Bandwidth estimate: ${connection.downlink} Mbit/s`
+      `Bandwidth estimate: ${getHTML(connection.downlink)} Mbit/s`
     );
 
     const roundTripTime = new Control(
       content.node,
-      "h3",
+      "h4",
       "card__text",
-      `Round Trip Time (delay): ${connection.rtt} ms`
+      `Round Trip Time (delay): ${getHTML(connection.rtt)} ms`
     );
 
     const trafficSaving = new Control(
       content.node,
-      "h3",
+      "h4",
       "card__text",
       `Traffic saving: ${getBooleanIcon(connection.saveData)}`
     );
 
     function updateConnectionStatus() {
-      type.node.innerText = `Type: ${connection.effectiveType}`;
-      bandwidthEstimate.node.innerText = `Bandwidth estimate: ${connection.downlink} Mbit/s`;
-      roundTripTime.node.innerText = `Round Trip Time (delay): ${connection.rtt} ms`;
+      type.node.innerText = `Type: ${getHTML(connection.effectiveType)}`;
+      bandwidthEstimate.node.innerText = `Bandwidth estimate: ${getHTML(connection.downlink)} Mbit/s`;
+      roundTripTime.node.innerText = `Round Trip Time (delay): ${getHTML(connection.rtt)} ms`;
       trafficSaving.node.innerText = `Traffic saving: ${getBooleanIcon(connection.saveData)}`;
     }
 

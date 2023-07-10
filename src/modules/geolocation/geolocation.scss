@@ -3,13 +3,14 @@
   border-width: 5px;
   border-style: solid;
   border-radius: 5px;
-  width: 440px;
+  width: 470px;
   height: 250px;
 }
 
 .coords-wrapper {
+  margin-left: 0.5rem;
   display: flex;
-  gap: 3rem;
+  gap: 1rem;
 }
 
 .map.hide::before {
