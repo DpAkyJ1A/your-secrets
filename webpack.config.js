@@ -3,6 +3,7 @@ const { merge } = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const Dotenv = require("dotenv-webpack");
 
 const baseConfig = {
   entry: "./src/index.js",
@@ -49,13 +50,17 @@ const baseConfig = {
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
+    new Dotenv(),
   ],
   resolve: {
     extensions: [".js"],
     alias: {
       control$: path.resolve(__dirname, "src/modules/tools/control.js"),
       card$: path.resolve(__dirname, "src/modules/tools/card/card.js"),
-      decoratingFunctions$: path.resolve(__dirname, "src/modules/tools/decoratingFunctions/decoratingFunctions.js"),
+      decoratingFunctions$: path.resolve(
+        __dirname,
+        "src/modules/tools/decoratingFunctions/decoratingFunctions.js"
+      ),
     },
   },
   output: {

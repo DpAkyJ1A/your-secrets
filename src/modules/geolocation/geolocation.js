@@ -15,7 +15,7 @@ export default class Geolocation extends Card {
     const map = new Control(this.card.node, "div", "map hide");
 
     const loader = new Loader({
-      apiKey: "AIzaSyB5DQpWm3AhxvM3OQZ36tBzxYO55QUU_xs",
+      apiKey: process.env.GOOGLE_MAP_API_KEY,
       version: "weekly",
     });
 
