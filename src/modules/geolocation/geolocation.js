@@ -28,27 +28,27 @@ export default class Geolocation extends Card {
       });
     });
 
-    const coordsWrapper = new Control(this.card.node, "div", "coords-wrapper");
+    const coordsWrapper = new Control(this.card.node, "div", "line");
 
     const latitude = new Control(
       coordsWrapper.node,
       "h4",
       "card__text",
-      "Latitude: &#8212"
+      `Latitude: ${getHTML("&#8212")}`
     );
 
     const longitude = new Control(
       coordsWrapper.node,
       "h4",
       "card__text",
-      "Longitude: &#8212"
+      `Longitude: ${getHTML("&#8212")}`
     );
 
     const accuracy = new Control(
       this.card.node,
       "h4",
       "card__text",
-      "Accuracy: &#8212"
+      `Accuracy: ${getHTML("&#8212")}`
     );
 
     const options = {

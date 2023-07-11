@@ -1,16 +1,10 @@
 .map {
   position: relative;
-  border-width: 5px;
+  border-width: 3px;
   border-style: solid;
   border-radius: 5px;
   width: 470px;
   height: 250px;
-}
-
-.coords-wrapper {
-  margin-left: 0.5rem;
-  display: flex;
-  gap: 1rem;
 }
 
 .map.hide::before {
