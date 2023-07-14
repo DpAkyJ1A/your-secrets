@@ -60,7 +60,9 @@ export default class History extends Card {
     <p>Not only is the history limited to only a tab, but it is also impossible to get the url of previously visited sites, except for the previous one (hehe), which can be obtained using the <strong><code class="${localStorage.getItem(
       "theme"
     )}">document.referrer</code></strong> property, which is available in any browser.</p>
-    <p>So keep in mind, support knows where you come from :)</p>`;
+    <p>It is important to note that the address of the last visited site is available only if the user came to the page directly (not through a link, but, for example, through a bookmark).</p>
+    <p>It is not difficult to guess what sites usually use this property for - web traffic analytics. So you can find out from which resources the most clicks are made on the link in order to make appropriate marketing decisions in the future.</p>
+    <p>So be aware, support might know where you're coming from :)</p>`;
 
     const compatibilityName = "History";
 
