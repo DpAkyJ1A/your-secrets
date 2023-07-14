@@ -111,7 +111,6 @@ export default class Clipboard extends Card {
     async function processClipboardFile() {
       try {
         const clipboardItems = await navigator.clipboard.read();
-        console.log(clipboardItems);
         for (const clipboardItem of clipboardItems) {
           workspaceError.node.style.display = "none";
           workspaceAnotherTypeOfFile.node.style.display = "none";

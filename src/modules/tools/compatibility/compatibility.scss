@@ -22,6 +22,12 @@
 .link {
   color: inherit;
   transition: color 0.2s ease;
+  cursor: pointer;
+}
+
+.link:has(.card__error) {
+  text-decoration: none;
+  pointer-events: none;
 }
 
 .link:hover {

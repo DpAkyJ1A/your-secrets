@@ -6,6 +6,7 @@ import Time from "../../modules/time/time";
 import Clipboard from "../../modules/clipboard/clipboard";
 import Geolocation from "../../modules/geolocation/geolocation";
 import Connection from "../../modules/connection/connection";
+import History from "../../modules/history/history";
 
 export default class Main {
   main;
@@ -20,5 +21,6 @@ export default class Main {
     new Clipboard(this.main.node);
     new Geolocation(this.main.node);
     new Connection(this.main.node);
+    new History(this.main.node);
   }
 }
