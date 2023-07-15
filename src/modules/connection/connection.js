@@ -30,39 +30,45 @@ export default class Connection extends Card {
       content.node,
       "h4",
       "card__text",
-      `Type: ${getHTML(connection.effectiveType)}`
+      `Type: ${connection ? getHTML(connection.effectiveType) : getHTML(undefined)}`
     );
 
     const bandwidthEstimate = new Control(
       content.node,
       "h4",
       "card__text",
-      `Bandwidth estimate: ${getHTML(connection.downlink)} Mbit/s`
+      `Bandwidth estimate: ${
+        connection ? getHTML(connection.downlink) : getHTML(undefined)
+      } Mbps`
     );
 
     const roundTripTime = new Control(
       content.node,
       "h4",
       "card__text",
-      `Round Trip Time (delay): ${getHTML(connection.rtt)} ms`
+      `Round Trip Time (delay): ${
+        connection ? getHTML(connection.rtt) : getHTML(undefined)
+      } ms`
     );
 
     const trafficSaving = new Control(
       content.node,
       "h4",
       "card__text",
-      `Traffic saving: ${getBooleanIcon(connection.saveData)}`
+      `Traffic saving: ${
+        connection ? getBooleanIcon(connection.saveData) : getHTML(undefined)
+      }`
     );
 
     function updateConnectionStatus() {
       isOnline.node.innerHTML = `Online: ${getBooleanIcon(navigator.onLine)}`;
       type.node.innerHTML = `Type: ${getHTML(connection.effectiveType)}`;
-      bandwidthEstimate.node.innerHTML = `Bandwidth estimate: ${getHTML(connection.downlink)} Mbit/s`;
+      bandwidthEstimate.node.innerHTML = `Bandwidth estimate: ${getHTML(connection.downlink)} Mbps`;
       roundTripTime.node.innerHTML = `Round Trip Time (delay): ${getHTML(connection.rtt)} ms`;
       trafficSaving.node.innerHTML = `Traffic saving: ${getBooleanIcon(connection.saveData)}`;
     }
 
-    connection.addEventListener("change", updateConnectionStatus);
+    connection && connection.addEventListener("change", updateConnectionStatus);
   };
 
   fillPopupData = () => {
@@ -74,6 +80,6 @@ export default class Connection extends Card {
 
     const compatibilityName = "NetworkInformation";
 
-    super.fillPopupData(description, compatibilityName);
+    super.fillPopupData(description, compatibilityName, "onLine");
   };
 }
