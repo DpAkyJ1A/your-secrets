@@ -5,7 +5,7 @@ export function getBooleanIcon(bool) {
 }
 
 export function getHTML(data) {
-  if (data)
+  if (data || data === 0)
     return `<span>${data}</span>`;
   return `<span class="card__error">&#8212</span>`;
 }
