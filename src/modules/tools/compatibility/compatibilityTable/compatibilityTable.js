@@ -22,7 +22,9 @@ export default class CompatibilityTable {
       this.data = null;
     }
 
-    const slider = new Control(node, "div", "slider");
+    const wrapper = new Control(node, "div", "wrapper");
+    const name = new Control(wrapper.node, "h3", "", obj);
+    const slider = new Control(wrapper.node, "div", "slider");
     const tablesWrapper = new Control(slider.node, "div", "tables-wrapper");
     const desktopTableWrapper = new Control(tablesWrapper.node, "div", "table-wrapper");
     this.desktopBrowsersTableCreate(desktopTableWrapper.node, this.support, propsNames);

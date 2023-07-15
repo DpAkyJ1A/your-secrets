@@ -21,14 +21,14 @@ export default class Card {
     this.cardInfo.node.onclick = this.popup.show;
   }
 
-  fillPopupData(description, compatibilityName) {
+  fillPopupData(description, ...compatibilityNames) {
     const descriptionWrapper = new Control(
       this.popup.popupContent.node,
       "div",
       "description-wrapper"
     );
     descriptionWrapper.node.innerHTML = description;
-    new Compatibility(this.popup.popupContent.node, compatibilityName);
+    new Compatibility(this.popup.popupContent.node, ...compatibilityNames);
   };
 
   errorCatcher = (func) => {
