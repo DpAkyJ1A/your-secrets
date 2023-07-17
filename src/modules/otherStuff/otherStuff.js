@@ -58,9 +58,11 @@ export default class OtherStuff extends Card {
   };
 
   fillPopupData = () => {
-    const description = `<p>The <strong><code class="${localStorage.getItem(
+    const description = `
+    <p>As you can see, i can get some more information from <strong><code class="${localStorage.getItem(
       "theme"
-    )}">---</code></strong> ---.</p>`;
+    )}">navigator</code></strong> :)</p>
+    `;
 
     const compatibilityName = "language";
 
